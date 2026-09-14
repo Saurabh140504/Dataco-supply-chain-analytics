@@ -80,8 +80,9 @@ The 9 numbers that matter most in this project — everything else in the report
 
 **Period covered:** January 2015 – February 2018
 
-This is a proper star schema — 5 dimension tables supporting 2 fact tables that share the same grain (`Order_Item_ID`) — rebuilt from a single flat 53-column source file, not something the data arrived as. Full column-level detail, known data-quality issues, and a feasibility check against the four business problems are documented separately in [`Supply_Chain_Data_Overview.md`](./Supply_Chain_Data_Overview.md).
+This is a proper star schema — 5 dimension tables supporting 2 fact tables that share the same grain (`Order_Item_ID`) — rebuilt from a single flat 53-column source file, not something the data arrived as. Full column-level detail, known data-quality issues, and a feasibility check against the four business problems are documented separately in 
 
+##### Data Understanding :- [`Supply_Chain_Data_Overview.md`](https://github.com/Saurabh140504/Dataco-supply-chain-analytics/tree/main/Dataset/Data%20Understanding).
 ---
 
 # Part 1 — MySQL
@@ -113,7 +114,7 @@ SQL is where every headline number in this project first came from — it's the 
 - **Fishing leads every category in total sales, but ranks only around #29 out of ~50 on profit margin** — this only became visible once margin was calculated as `SUM(Profit)/SUM(Sales)` per category and ranked separately from a plain sales ranking.
 - **$744,370.39 in cancelled sales value**, and checking this against order-value buckets (Low/Medium/High) showed almost no difference in cancellation rate — price doesn't predict cancellation.
 
-##### Full SQL: [`Global_Supply_Chain.sql`](Global_Supply_Chain.sql)
+##### Full SQL: [[`Global_Supply_Chain.sql`](https://github.com/Saurabh140504/Dataco-supply-chain-analytics/tree/main/MySQL))
 
 ✅ **MySQL stage complete and validated.**
 
@@ -132,7 +133,7 @@ Python's job wasn't to repeat the SQL analysis — it was to go a level deeper b
 - **Cross-checking KPIs in pandas against SQL's results confirmed the numbers were trustworthy** — late delivery rate, risk order rate, and both cancellation dollar figures all matched exactly, which is what allowed me to build the rest of the analysis on top of them with confidence.
 - **The monthly late-delivery trend line, plotted out visually, made the "no seasonality" finding concrete** — the line stays in a tight band all the way across three years with no seasonal spike anywhere.
 
-**Notebook:** [`Global_Supply_Chain.ipynb`](Global_Supply_Chain.ipynb)
+**Notebook:** [`Global_Supply_Chain.ipynb`](https://github.com/Saurabh140504/Dataco-supply-chain-analytics/tree/main/Python)
 
 ✅ **Python matches MySQL exactly** on every cross-checked KPI.
 
@@ -155,7 +156,7 @@ Power BI's job was translation and interactivity, not new discovery — but buil
 - **The sales-and-profit trend line on the Executive Overview page shows a sharp drop right at the very end of the timeline** (Jan 2018) — this lines up with the dataset simply ending in early February 2018, not a real business decline, and is worth remembering when reading that chart so the last data point isn't misread as a warning sign.
 - **Slicers on the Financial Impact and Operations pages make it possible to check whether any single category or region drives the patterns** — filtering through them confirms what SQL already found: nothing regional stands out, reinforcing that these are company-wide patterns, not isolated pockets.
 
-##### Power BI File: [Download the .pbix](Global_Supply_Chain.pbix)
+##### Power BI File: [Download the .pbix](https://github.com/Saurabh140504/Dataco-supply-chain-analytics/tree/main/Power%20BI)
 
 ✅ **Power BI matches MySQL and Python** on every headline number.
 
@@ -176,7 +177,7 @@ This page makes the shipping problem impossible to miss: First Class sits at 0.9
 ### Page 3 — Financial Impact: Profitability & Cancellations
 <img width="1325" height="742" alt="Screenshot 2026-09-13 194127" src="https://github.com/user-attachments/assets/7e478190-51a9-41b9-b34d-27249120c0b1" />
 
-The scatter chart shows exactly what the numbers predicted: sales volume climbs steadily to the right, but profit margin stays clustered in roughly the same 0.05–0.15 band regardless of how much a category sells — bigger doesn't mean more profitable here. The department bar chart shows a clear gap between Fitness at the top (~0.115) and Book Shop at the bottom (~0.07), a difference invisible unless margin is checked directly. Fishing also leads in cancelled sales value (~$130K), consistent with it being the top-selling category overall — bigger categories naturally cancel more in raw dollars. The cancellation trend chart shows a clean, steadily climbing cumulative total reaching $0.74M by Jan 2018, with no sign of acceleration or improvement along the way.
+The scatter chart shows exactly what the numbers predicted: sales volume climbs steadily to the right, but profit margin stays clustered in roughly the same 0.05–0.15 band regardless of how much a category sells — bigger doesn't mean more profitable here. The department bar chart shows a clear gap between Fitness at the top (0.115) and Book Shop at the bottom (0.07) ,a difference invisible unless margin is checked directly. Fishing also leads in cancelled sales value (~$130K), consistent with it being the top-selling category overall — bigger categories naturally cancel more in raw dollars. The cancellation trend chart shows a clean, steadily climbing cumulative total reaching $0.74M by Jan 2018, with no sign of acceleration or improvement along the way.
 
 ---
 
@@ -197,7 +198,8 @@ The same numbers, checked three independent ways:
 | Cancelled Profit Value | $75,345.63 | $75,345.63 | 75.35K ✅ |
 
 ---
-
+#### Final Project Report File :[Final Project File](https://github.com/Saurabh140504/Dataco-supply-chain-analytics/tree/main/Final%20Project%20Report)
+---
 ## Key Insights & Recommendations
 
 **1. First Class shipping, specifically, is the reliability problem — not the company overall.** It has a 95.32% late-delivery rate versus 38.07% for Standard Class, and this holds steady across every region and every month of the 3-year period. → Worth renegotiating that specific carrier contract or reviewing its fulfillment process, rather than a company-wide logistics overhaul.
